@@ -147,11 +147,39 @@ app.get('/weather', async (req, res) => {
   }
 });
 
+// 6. UUID endpoint: returns one or more generated UUIDs
+app.get('/uuid', (req, res) => {
+  const crypto = require('crypto');
+  const count = Math.min(Math.max(parseInt(req.query.count, 10) || 1, 1), 100);
+  const uuids = Array.from({ length: count }, () => crypto.randomUUID());
+  
+  res.json({
+    count,
+    uuids: count === 1 ? uuids[0] : uuids,
+  });
+});
+
+// 7. IP endpoint: returns the requester's IP address
+app.get('/ip', (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  res.json({ ip });
+});
+
+// 8. Headers endpoint: returns all request headers
+app.get('/headers', (req, res) => {
+  res.json({ headers: req.headers });
+});
+
+// 9. User-Agent endpoint: returns client's User-Agent
+app.get('/user-agent', (req, res) => {
+  res.json({ 'user-agent': req.headers['user-agent'] || 'unknown' });
+});
+
 // Wildcard fallback route
 app.use((req, res) => {
   res.status(404).json({
     error: 'Route not found',
-    message: 'Available endpoints: GET /health, GET /random, GET /delay, ALL /echo, GET /weather',
+    message: 'Available endpoints: GET /health, GET /random, GET /delay, ALL /echo, GET /weather, GET /uuid, GET /ip, GET /headers, GET /user-agent',
   });
 });
 
@@ -163,5 +191,9 @@ app.listen(PORT, () => {
   console.log(`Delay Endpoint: http://localhost:${PORT}/delay`);
   console.log(`Echo Endpoint: http://localhost:${PORT}/echo`);
   console.log(`Weather Delhi: http://localhost:${PORT}/weather`);
+  console.log(`UUID Generator: http://localhost:${PORT}/uuid?count=1`);
+  console.log(`IP Address: http://localhost:${PORT}/ip`);
+  console.log(`Request Headers: http://localhost:${PORT}/headers`);
+  console.log(`User Agent: http://localhost:${PORT}/user-agent`);
   console.log(`=========================================`);
 });

@@ -76,4 +76,71 @@ PORT=4000 npm start
     ```bash
     curl -X POST -H "Content-Type: application/json" -d '{"hello": "world"}' http://localhost:3000/echo
     ```
+
+### 5. Delhi Weather Info
+*   **Path**: `GET /weather`
+*   **Description**: Fetches current, real-time weather details for Delhi, India using the free, public Open-Meteo API.
+*   **Example curl**:
+    ```bash
+    curl http://localhost:3000/weather
+    ```
+*   **Expected Response**:
+    ```json
+    {
+      "location": "Delhi, India",
+      "coordinates": {
+        "latitude": 28.6139,
+        "longitude": 77.209
+      },
+      "timezone": "Asia/Kolkata",
+      "timestamp": "2026-05-30T17:15",
+      "weather": {
+        "temperature": "32.2°C",
+        "feelsLike": "35.4°C",
+        "humidity": "49%",
+        "condition": "Overcast",
+        "isDay": "Yes",
+        "precipitation": "0mm",
+        "windSpeed": "5.2km/h"
+      },
+      "source": "Open-Meteo (Free Weather API)"
+    }
+    ```
+
+### 6. UUID Generator
+*   **Path**: `GET /uuid`
+*   **Description**: Generates one or more random Version 4 UUIDs.
+*   **Query Parameters**:
+    *   `count` (optional, default: `1`, max: `100`): The number of UUIDs to generate. If `count=1`, a single UUID string is returned. If greater than 1, an array of UUIDs is returned.
+*   **Example curl**:
+    ```bash
+    curl "http://localhost:3000/uuid?count=3"
+    ```
+
+### 7. IP Address Lookup
+*   **Path**: `GET /ip`
+*   **Description**: Returns the requester's IP address.
+*   **Example curl**:
+    ```bash
+    curl http://localhost:3000/ip
+    ```
+
+### 8. Request Headers Echo
+*   **Path**: `GET /headers`
+*   **Description**: Returns all HTTP headers received by the server in the request.
+*   **Example curl**:
+    ```bash
+    curl http://localhost:3000/headers
+    ```
+
+### 9. User-Agent Lookup
+*   **Path**: `GET /user-agent`
+*   **Description**: Returns the client's User-Agent string.
+*   **Example curl**:
+    ```bash
+    curl http://localhost:3000/user-agent
+    ```
+
 # node_jstest
+
+
