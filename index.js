@@ -170,11 +170,46 @@ app.get('/headers', (req, res) => {
   res.json({ headers: req.headers });
 });
 
+// 9. Honey Heart endpoint: returns an ASCII heart or a JSON heart
+app.get('/honey', (req, res) => {
+  const format = (req.query.format || 'json').toLowerCase();
+  
+  const heartAscii = [
+    "      ******       ******      ",
+    "    **      **   **      **    ",
+    "  **          ***          **  ",
+    "  **                       **  ",
+    "    **                   **    ",
+    "      **               **      ",
+    "        **           **        ",
+    "          **       **          ",
+    "            **   **            ",
+    "              ***              "
+  ].join('\n');
+
+  if (format === 'text' || format === 'code') {
+    res.type('text/plain');
+    return res.send(heartAscii);
+  }
+
+  // Otherwise return JSON format
+  res.json({
+    message: "Here is a heart for you!",
+    owner: "honey",
+    emoji: "❤️",
+    ascii: heartAscii,
+    coordinates: {
+      shape: "heart",
+      formula: "(x^2 + y^2 - 1)^3 - x^2 * y^3 = 0"
+    }
+  });
+});
+
 // Wildcard fallback route
 app.use((req, res) => {
   res.status(404).json({
     error: 'Route not found',
-    message: 'Available endpoints: GET /health, GET /random, GET /delay, ALL /echo, GET /weather, GET /uuid, GET /ip, GET /headers',
+    message: 'Available endpoints: GET /health, GET /random, GET /delay, ALL /echo, GET /weather, GET /uuid, GET /ip, GET /headers, GET /honey',
   });
 });
 
@@ -189,5 +224,6 @@ app.listen(PORT, () => {
   console.log(`UUID Generator: http://localhost:${PORT}/uuid?count=1`);
   console.log(`IP Address: http://localhost:${PORT}/ip`);
   console.log(`Request Headers: http://localhost:${PORT}/headers`);
+  console.log(`Honey Heart: http://localhost:${PORT}/honey?format=json`);
   console.log(`=========================================`);
 });

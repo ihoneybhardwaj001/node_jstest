@@ -133,7 +133,23 @@ PORT=4000 npm start
     curl http://localhost:3000/headers
     ```
 
+### 9. Honey Heart
+*   **Path**: `GET /honey`
+*   **Description**: Creates a beautiful heart using ASCII text or JSON format.
+*   **Query Parameters**:
+    *   `format` (optional, default: `json`): Use `format=json` to retrieve the heart structure as a JSON object, or `format=text` / `format=code` to get raw ASCII heart text art.
+*   **Example curls**:
+    *   **JSON Format**:
+        ```bash
+        curl http://localhost:3000/honey?format=json
+        ```
+    *   **Text/Code Format**:
+        ```bash
+        curl http://localhost:3000/honey?format=text
+        ```
+
 # node_jstest
+
 
 
 
