@@ -170,22 +170,38 @@ app.get('/headers', (req, res) => {
   res.json({ headers: req.headers });
 });
 
-// 9. Honey Heart endpoint: returns an ASCII heart or a JSON heart
+// 9. Honey Heart endpoint: returns a big ASCII heart or a JSON heart, and prints it to the console
 app.get('/honey', (req, res) => {
   const format = (req.query.format || 'json').toLowerCase();
   
   const heartAscii = [
-    "      ******       ******      ",
-    "    **      **   **      **    ",
-    "  **          ***          **  ",
-    "  **                       **  ",
-    "    **                   **    ",
-    "      **               **      ",
-    "        **           **        ",
-    "          **       **          ",
-    "            **   **            ",
-    "              ***              "
+    "      ****************           ****************      ",
+    "    ********************       ********************    ",
+    "  ************************   ************************  ",
+    " ************************** ************************** ",
+    "*******************************************************",
+    "*******************************************************",
+    "*******************************************************",
+    " ***************************************************** ",
+    "   *************************************************   ",
+    "     *********************************************     ",
+    "       *****************************************       ",
+    "         *************************************         ",
+    "           *********************************           ",
+    "             *****************************             ",
+    "               *************************               ",
+    "                 *********************                 ",
+    "                   *****************                   ",
+    "                     *************                     ",
+    "                       *********                       ",
+    "                         *****                         ",
+    "                           *                           "
   ].join('\n');
+
+  // Print the big heart shape to the console
+  console.log("\n--- Big Heart Shape requested at /honey ---");
+  console.log(heartAscii);
+  console.log("-------------------------------------------\n");
 
   if (format === 'text' || format === 'code') {
     res.type('text/plain');
@@ -194,7 +210,7 @@ app.get('/honey', (req, res) => {
 
   // Otherwise return JSON format
   res.json({
-    message: "Here is a heart for you!",
+    message: "Here is a big heart for you!",
     owner: "honey",
     emoji: "❤️",
     ascii: heartAscii,
