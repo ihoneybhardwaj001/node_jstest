@@ -1,155 +1,36 @@
-# Test Backend API
-
-A lightweight, robust Node.js backend using Express, designed for testing HTTP requests, response delays, random data generation, and endpoint verification.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-### 1. Installation
-
-If you haven't already, install the dependencies by running the following command in this directory:
+First, run the development server:
 
 ```bash
-npm install
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### 2. Running the Server
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Start the backend server:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-npm start
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-By default, the server will start on port `3000`. You can customize the port by setting the `PORT` environment variable:
+## Learn More
 
-```bash
-PORT=4000 npm start
-```
+To learn more about Next.js, take a look at the following resources:
 
----
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## API Endpoints
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### 1. Health Check
-*   **Path**: `GET /health`
-*   **Description**: Verifies that the server is running and returns simple status and system telemetry.
-*   **Example curl**:
-    ```bash
-    curl http://localhost:3000/health
-    ```
-*   **Expected Response**:
-    ```json
-    {
-      "status": "UP",
-      "timestamp": "2026-05-30T14:30:00.000Z",
-      "uptime": "12.34s",
-      "memoryUsage": { ... },
-      "platform": "darwin"
-    }
-    ```
+## Deploy on Vercel
 
-### 2. Random Number Generator
-*   **Path**: `GET /random`
-*   **Description**: Generates a random integer within a range.
-*   **Query Parameters**:
-    *   `min` (optional, default: `1`)
-    *   `max` (optional, default: `100`)
-*   **Example curl**:
-    ```bash
-    curl "http://localhost:3000/random?min=10&max=50"
-    ```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### 3. Response Delay Simulator
-*   **Path**: `GET /delay`
-*   **Description**: Simulates high latency or slow network responses. Very useful for testing client timeouts.
-*   **Query Parameters**:
-    *   `ms` (optional, default: `1000` milliseconds)
-*   **Example curl**:
-    ```bash
-    curl "http://localhost:3000/delay?ms=2000"
-    ```
-
-### 4. Echo Request
-*   **Path**: `ALL /echo` (supports GET, POST, PUT, DELETE, PATCH, etc.)
-*   **Description**: Echoes the request headers, body, query parameters, and HTTP method back to the sender. Extremely useful for debugging clients.
-*   **Example curl**:
-    ```bash
-    curl -X POST -H "Content-Type: application/json" -d '{"hello": "world"}' http://localhost:3000/echo
-    ```
-
-### 5. Delhi Weather Info
-*   **Path**: `GET /weather`
-*   **Description**: Fetches current, real-time weather details for Delhi, India using the free, public Open-Meteo API.
-*   **Example curl**:
-    ```bash
-    curl http://localhost:3000/weather
-    ```
-*   **Expected Response**:
-    ```json
-    {
-      "location": "Delhi, India",
-      "coordinates": {
-        "latitude": 28.6139,
-        "longitude": 77.209
-      },
-      "timezone": "Asia/Kolkata",
-      "timestamp": "2026-05-30T17:15",
-      "weather": {
-        "temperature": "32.2°C",
-        "feelsLike": "35.4°C",
-        "humidity": "49%",
-        "condition": "Overcast",
-        "isDay": "Yes",
-        "precipitation": "0mm",
-        "windSpeed": "5.2km/h"
-      },
-      "source": "Open-Meteo (Free Weather API)"
-    }
-    ```
-
-### 6. UUID Generator
-*   **Path**: `GET /uuid`
-*   **Description**: Generates one or more random Version 4 UUIDs.
-*   **Query Parameters**:
-    *   `count` (optional, default: `1`, max: `100`): The number of UUIDs to generate. If `count=1`, a single UUID string is returned. If greater than 1, an array of UUIDs is returned.
-*   **Example curl**:
-    ```bash
-    curl "http://localhost:3000/uuid?count=3"
-    ```
-
-### 7. IP Address Lookup
-*   **Path**: `GET /ip`
-*   **Description**: Returns the requester's IP address.
-*   **Example curl**:
-    ```bash
-    curl http://localhost:3000/ip
-    ```
-
-### 8. Request Headers Echo
-*   **Path**: `GET /headers`
-*   **Description**: Returns all HTTP headers received by the server in the request.
-*   **Example curl**:
-    ```bash
-    curl http://localhost:3000/headers
-    ```
-
-### 9. Honey Heart
-*   **Path**: `GET /honey`
-*   **Description**: Creates a beautiful heart using ASCII text or JSON format.
-*   **Query Parameters**:
-    *   `format` (optional, default: `json`): Use `format=json` to retrieve the heart structure as a JSON object, or `format=text` / `format=code` to get raw ASCII heart text art.
-*   **Example curls**:
-    *   **JSON Format**:
-        ```bash
-        curl http://localhost:3000/honey?format=json
-        ```
-    *   **Text/Code Format**:
-        ```bash
-        curl http://localhost:3000/honey?format=text
-        ```
-
-# node_jstest
-
-
-
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
