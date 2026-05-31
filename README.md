@@ -133,14 +133,7 @@ PORT=4000 npm start
     curl http://localhost:3000/headers
     ```
 
-### 9. User-Agent Lookup
-*   **Path**: `GET /user-agent`
-*   **Description**: Returns the client's User-Agent string.
-*   **Example curl**:
-    ```bash
-    curl http://localhost:3000/user-agent
-    ```
-
 # node_jstest
+
 
 

@@ -170,16 +170,11 @@ app.get('/headers', (req, res) => {
   res.json({ headers: req.headers });
 });
 
-// 9. User-Agent endpoint: returns client's User-Agent
-app.get('/user-agent', (req, res) => {
-  res.json({ 'user-agent': req.headers['user-agent'] || 'unknown' });
-});
-
 // Wildcard fallback route
 app.use((req, res) => {
   res.status(404).json({
     error: 'Route not found',
-    message: 'Available endpoints: GET /health, GET /random, GET /delay, ALL /echo, GET /weather, GET /uuid, GET /ip, GET /headers, GET /user-agent',
+    message: 'Available endpoints: GET /health, GET /random, GET /delay, ALL /echo, GET /weather, GET /uuid, GET /ip, GET /headers',
   });
 });
 
@@ -194,6 +189,5 @@ app.listen(PORT, () => {
   console.log(`UUID Generator: http://localhost:${PORT}/uuid?count=1`);
   console.log(`IP Address: http://localhost:${PORT}/ip`);
   console.log(`Request Headers: http://localhost:${PORT}/headers`);
-  console.log(`User Agent: http://localhost:${PORT}/user-agent`);
   console.log(`=========================================`);
 });
